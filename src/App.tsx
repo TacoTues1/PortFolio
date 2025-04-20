@@ -97,10 +97,10 @@ function App() {
 </div>
         <Typewriter />
         <img
-          className="profile-pic-placeholder"
-          src="profile.webp"
-          alt="Profile"
-        />
+  className="profile-pic-placeholder"
+  src="https://i.redd.it/b7521c2n0h6b1.jpg"  // <- use real direct image URL here
+  alt="Profile"
+/>
 
         <section id="about" className="section">
           <p>Hey!  I'm Alfonz, a third-year student at Negros Oriental State University studying information technology. 
@@ -128,11 +128,11 @@ function App() {
   <h2>Projects</h2>
   <div className="project-cards">
     <div className="project-card">
-      <img src="countryAPI.png" alt="Country Information Project" className="project-image" />
+      <img src="https://www.flagsimporter.com/cdn/shop/files/2x3ft-set-of-20-international-flags-579710.jpg?v=1737397210" alt="Country Information Project" className="project-image" />
       <h3>Country Information using API</h3>
       <p>This project displays country details using a public API. It features a search bar, flags, and hover modals.</p>
       <div className="project-links">
-        <a href="https://github.com/TacoTues1/Testing" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/TacoTues1/Country-Information-Using-API" target="_blank" rel="noopener noreferrer">
           <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" className="icon-small" />
         </a>
         <a href="https://midtermtesting.netlify.app/" target="_blank" rel="noopener noreferrer">

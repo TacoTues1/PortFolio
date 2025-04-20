@@ -9,7 +9,7 @@ html, #root {
 body {
   font-family: Arial, sans-serif;
   color: black;
-  background-color: #fff;
+  background-color: #f6f3f2;
 }
 a {
   text-decoration: none;
@@ -45,7 +45,7 @@ a {
   color: white;
 }
 
-.dark-mode .main-content {
+.dark-mode{
   background-color: #222;
 }
 
