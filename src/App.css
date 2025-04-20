@@ -244,18 +244,30 @@ a {
   animation: blink-caret 0.7s infinite;
 }
 
-/* Profile */
 .profile-pic-placeholder {
   margin: 2rem auto;
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
-  background-color: #ccc;
+  transition: transform 0.3s ease;
+}
+
+.profile-pic-placeholder:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .profile-pic-placeholder {
+    width: 120px; /* Smaller size for mobile */
+    height: 120px;
+  }
 }
 
 /* Section */
 .section {
-  margin: 1rem 0;
+  margin: 0.3rem;
   max-width: 50%;
   color: black;
 }

@@ -98,7 +98,7 @@ function App() {
         <Typewriter />
         <img
           className="profile-pic-placeholder"
-          src="profile/profile.webp"
+          src="profile.webp"
           alt="Profile"
         />
 
@@ -128,7 +128,7 @@ function App() {
   <h2>Projects</h2>
   <div className="project-cards">
     <div className="project-card">
-      <img src="projects_image/countryAPI.png" alt="Country Information Project" className="project-image" />
+      <img src="countryAPI.png" alt="Country Information Project" className="project-image" />
       <h3>Country Information using API</h3>
       <p>This project displays country details using a public API. It features a search bar, flags, and hover modals.</p>
       <div className="project-links">
