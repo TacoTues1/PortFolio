@@ -9,7 +9,6 @@ const Typewriter = () => {
   const [blink, setBlink] = useState(true);
 
   useEffect(() => {
-    // Handle blinking caret
     const blinkInterval = setInterval(() => {
       setBlink((prev) => !prev);
     }, 500);
@@ -19,10 +18,10 @@ const Typewriter = () => {
 
   useEffect(() => {
     if (subIndex === phrases[index].length + 1 && !deleting) {
-      setTimeout(() => setDeleting(true), 1000); // Pause before deleting
+      setTimeout(() => setDeleting(true), 1000);
     } else if (deleting && subIndex === 0) {
       setDeleting(false);
-      setIndex((prev) => (prev + 1) % phrases.length); // Move to the next phrase
+      setIndex((prev) => (prev + 1) % phrases.length); 
     }
 
     const timeout = setTimeout(() => {
@@ -122,7 +121,6 @@ function App() {
     </a>
   </div>
 </section>
-
 
 <section id="projects" className="section">
   <h2>Projects</h2>
