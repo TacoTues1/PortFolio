@@ -140,6 +140,19 @@ function App() {
         </a>
       </div>
     </div>
+    <div className="project-card1">
+      <img src="https://i.etsystatic.com/20098616/r/il/5e8c57/5831356276/il_1588xN.5831356276_ql4l.jpg" alt="Simple PhotoBooth" className="project-image" />
+      <h3>Simple PhotoBooth</h3>
+      <p>PhotoBooth is a web app that lets users take webcam photos, choose layouts, set timers, and manage a photo gallery with a sleek, user-friendly interface.</p>
+      <div className="project-links">
+        <a href="https://github.com/TacoTues1/PhotoBooth-w-o-Database" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" className="icon-small" />
+        </a>
+        <a href="https://photobth.netlify.app/" target="_blank" rel="noopener noreferrer">
+          <img src="https://cdn-icons-png.flaticon.com/512/5968/5968906.png" alt="Netlify" className="icon-small" />
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
