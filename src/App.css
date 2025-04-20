@@ -61,6 +61,10 @@ a {
   background-color: #444;
   color: white;
 }
+.dark-mode .project-card1 {
+  background-color: #444;
+  color: white;
+}
 
 .dark-mode .project-card a {
   color: #4da6ff;
