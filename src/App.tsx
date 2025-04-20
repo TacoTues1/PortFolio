@@ -11,7 +11,7 @@ const Typewriter = () => {
   useEffect(() => {
     const blinkInterval = setInterval(() => {
       setBlink((prev) => !prev);
-    }, 500);
+    }, 1000);
 
     return () => clearInterval(blinkInterval);
   }, []);
@@ -26,7 +26,7 @@ const Typewriter = () => {
 
     const timeout = setTimeout(() => {
       setSubIndex((prev) => prev + (deleting ? -1 : 1));
-    }, deleting ? 50 : 150);
+    }, deleting ? 50 : 200);
 
     return () => clearTimeout(timeout);
   }, [subIndex, deleting, index]);
@@ -97,7 +97,7 @@ function App() {
         <Typewriter />
         <img
   className="profile-pic-placeholder"
-  src="https://i.redd.it/b7521c2n0h6b1.jpg"  // <- use real direct image URL here
+  src="https://i.redd.it/b7521c2n0h6b1.jpg"
   alt="Profile"
 />
 
@@ -128,7 +128,7 @@ function App() {
     <div className="project-card">
       <img src="https://www.flagsimporter.com/cdn/shop/files/2x3ft-set-of-20-international-flags-579710.jpg?v=1737397210" alt="Country Information Project" className="project-image" />
       <h3>Country Information using API</h3>
-      <p>This project displays country details using a public API. It features a search bar, flags, and hover modals.</p>
+      {/* <p>This project displays country details using a public API. It features a search bar, flags, and hover modals.</p> */}
       <div className="project-links">
         <a href="https://github.com/TacoTues1/Country-Information-Using-API" target="_blank" rel="noopener noreferrer">
           <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" className="icon-small" />
@@ -141,7 +141,7 @@ function App() {
     <div className="project-card1">
       <img src="https://i.etsystatic.com/20098616/r/il/5e8c57/5831356276/il_1588xN.5831356276_ql4l.jpg" alt="Simple PhotoBooth" className="project-image" />
       <h3>Simple PhotoBooth</h3>
-      <p>PhotoBooth is a web app that lets users take webcam photos, choose layouts, set timers, and manage a photo gallery with a sleek, user-friendly interface.</p>
+      {/* <p>PhotoBooth is a web app that lets users take webcam photos, choose layouts, set timers, and manage a photo gallery with a sleek, user-friendly interface.</p> */}
       <div className="project-links">
         <a href="https://github.com/TacoTues1/PhotoBooth-w-o-Database" target="_blank" rel="noopener noreferrer">
           <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" className="icon-small" />
