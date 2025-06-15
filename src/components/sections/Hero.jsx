@@ -4,8 +4,8 @@ import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 
 const Hero = () => {
   const handleDownloadCV = () => {
-    // Replace with your actual CV file path
-    window.open('/path-to-your-cv.pdf', '_blank');
+    
+    window.open('/cv/CV-Alfonz.pdf', '_blank');
   };
 
   return (
