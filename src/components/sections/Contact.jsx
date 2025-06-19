@@ -113,7 +113,7 @@ const Contact = () => {
     },
     {
       icon: FaPhone,
-      text: '99999999999',
+      text: '+639693769237',
       link: '',
     },
     {
