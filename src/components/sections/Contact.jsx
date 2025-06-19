@@ -9,6 +9,7 @@ import {
   FaFacebookF,
   FaPhone,
 } from 'react-icons/fa';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -38,31 +39,31 @@ const Contact = () => {
     e.preventDefault();
     setStatus({ type: 'loading', message: 'Sending message...' });
 
-    try {
-      // Replace with your form submission endpoint
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+    emailjs.send(
+      'service_47wpvcg', // replace with your EmailJS service ID
+      'template_38f1kri', // replace with your EmailJS template ID
+      {
+        name: formData.name,
+        email_id: formData.email,
+        message: formData.message,
+      },
+      'JSyV51NPodTEnPL9p' // replace with your EmailJS user ID (public key)
+    )
+      .then(
+        (result) => {
+          setStatus({
+            type: 'success',
+            message: 'Message sent successfully!'
+          });
+          setFormData({ name: '', email: '', message: '' });
         },
-        body: JSON.stringify(formData),
-      });
-
-      if (response.ok) {
-        setStatus({
-          type: 'success',
-          message: 'Message sent successfully!',
-        });
-        setFormData({ name: '', email: '', message: '' });
-      } else {
-        throw new Error('Failed to send message');
-      }
-    } catch (error) {
-      setStatus({
-        type: 'error',
-        message: 'Failed to send message. Please try again.',
-      });
-    }
+        (error) => {
+          setStatus({
+            type: 'error',
+            message: 'Failed to send message. Please try again.'
+          });
+        }
+      );
   };
 
   const containerVariants = {
@@ -271,3 +272,5 @@ const Contact = () => {
 };
 
 export default Contact; 
+
+

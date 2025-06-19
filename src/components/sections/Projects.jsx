@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 import axios from 'axios';
 
 const Projects = () => {
@@ -59,6 +59,15 @@ const Projects = () => {
 
   const featuredProjects = [
     {
+      title: 'Photo Booth',
+      description:
+        "A Photo Booth website is a web-based application that allows users to take, preview, and download photos using their device's webcam. It typically features options like layout selection, countdown timers, photo filters, and a gallery to view or delete saved images. Ideal for events, personal use, or entertainment, the site offers an interactive and fun way to capture memories directly through the browser.",
+      image: '/images/photobooth.jpg',
+      technologies: ['React', 'Webcam API', 'JavaScript', 'CSS'],
+      github: '', // Add GitHub link if available
+      live: 'https://photobth.netlify.app/',
+    },
+    {
       title: 'TESTING',
       description:
         'A full-stack web application built with React, Node.js, and MongoDB.',
@@ -97,52 +106,30 @@ const Projects = () => {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -5 }}
-                className="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-lg"
+                className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 flex flex-col justify-between min-h-[220px]"
               >
-                <div className="relative h-48">
+                {project.image && (
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover"
+                    className="w-16 h-16 object-cover rounded mb-3 mx-auto"
                   />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400 mb-4">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-400 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex space-x-4">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
-                    >
-                      <FaGithub className="w-5 h-5 mr-2" />
-                      Code
-                    </a>
-                    <a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
-                    >
-                      <FaExternalLinkAlt className="w-5 h-5 mr-2" />
-                      Live Demo
-                    </a>
-                  </div>
+                )}
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 text-center">
+                  {project.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm text-center">
+                  {project.description.length > 100 ? project.description.slice(0, 100) + '...' : project.description}
+                </p>
+                <div className="mt-auto text-center">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
+                  >
+                    Live Demo
+                  </a>
                 </div>
               </motion.div>
             ))}
