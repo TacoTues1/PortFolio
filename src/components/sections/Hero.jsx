@@ -3,10 +3,9 @@ import { motion } from 'framer-motion';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
 
 const Hero = () => {
-  const handleDownloadCV = () => {
-    
-    window.open('/resume/ResumeAlfonz.pdf', '_blank');
-  };
+  // const handleDownloadCV = () => {
+  //   window.open('/resume/ResumeAlfonz.pdf.pdf', '_blank');
+  // };
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
@@ -48,15 +47,17 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
             >
-              <motion.button
+              <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={handleDownloadCV}
+                href="/resume/ResumeAlfonz.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
               >
                 <ArrowDownTrayIcon className="h-5 w-5" />
                 Download Resume
-              </motion.button>
+              </motion.a>
 
               <motion.a
                 whileHover={{ scale: 1.05 }}

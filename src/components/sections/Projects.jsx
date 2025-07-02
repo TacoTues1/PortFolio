@@ -59,6 +59,33 @@ const Projects = () => {
 
   const featuredProjects = [
     {
+      title: 'Time Master',
+      description:
+        "A comprehensive time management web application featuring a stopwatch and timer functionality. Built with modern web technologies, it provides precise time tracking with start, stop, and reset capabilities. The timer allows users to set custom hours, minutes, and seconds for countdown purposes. Perfect for productivity, workouts, cooking, or any activity requiring time management.",
+      image: '/images/timemaster.png',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Web APIs'],
+      github: 'https://github.com/TacoTues1/Clock',
+      live: 'https://clocktimerwatch.netlify.app/',
+    },
+    {
+      title: 'Tic Tac Toe',
+      description:
+        "A classic Tic Tac Toe game with both Player vs Player and Player vs Computer modes. Features a clean, intuitive interface with score tracking and game state management. The computer opponent uses strategic algorithms to provide a challenging gameplay experience. Includes game restart functionality and visual feedback for game status.",
+      image: '/images/tictactoe.png',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Game Logic'],
+      github: 'https://github.com/TacoTues1/TicTacToe',
+      live: 'https://tictac2s.netlify.app/',
+    },
+    {
+      title: 'Simple Pong Game',
+      description:
+        "A modern implementation of the classic Pong arcade game using web technologies. Features smooth paddle movement, ball physics, and responsive controls. The game includes score tracking and maintains the nostalgic feel of the original while adding modern web design elements and smooth animations.",
+      image: '/images/ponggame.png',
+      technologies: ['HTML', 'CSS', 'JavaScript', 'Canvas API'],
+      github: 'https://github.com/TacoTues1/PongGame',
+      live: 'https://ponggam3.netlify.app/',
+    },
+    {
       title: 'Photo Booth',
       description:
         "A Photo Booth website is a web-based application that allows users to take, preview, and download photos using their device's webcam. It typically features options like layout selection, countdown timers, photo filters, and a gallery to view or delete saved images. Ideal for events, personal use, or entertainment, the site offers an interactive and fun way to capture memories directly through the browser.",
@@ -66,15 +93,6 @@ const Projects = () => {
       technologies: ['React', 'Webcam API', 'JavaScript', 'CSS'],
       github: '', // Add GitHub link if available
       live: 'https://photobth.netlify.app/',
-    },
-    {
-      title: 'TESTING',
-      description:
-        'A full-stack web application built with React, Node.js, and MongoDB.',
-      image: '/images/sample.png',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
-      github: 'https://github.com/username/project1',
-      live: 'https://project1.com',
     },
     // Add more featured projects here
   ];
@@ -121,15 +139,38 @@ const Projects = () => {
                 <p className="text-gray-600 dark:text-gray-400 mb-4 text-sm text-center">
                   {project.description.length > 100 ? project.description.slice(0, 100) + '...' : project.description}
                 </p>
-                <div className="mt-auto text-center">
-                  <a
-                    href={project.live}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
-                  >
-                    Live Demo
-                  </a>
+                <div className="mt-auto text-center space-y-2">
+                  <div className="flex flex-wrap gap-2 justify-center mb-3">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-2 justify-center">
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-3 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors text-sm"
+                      >
+                        <FaGithub className="w-4 h-4 mr-1" />
+                        Code
+                      </a>
+                    )}
+                    <a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
+                    >
+                      Live Demo
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             ))}

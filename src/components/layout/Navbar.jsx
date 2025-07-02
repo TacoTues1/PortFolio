@@ -28,11 +28,13 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed w-full z-50 transition-all duration-500 ${
+      className={`fixed w-full z-50 transition-all duration-500 
+        ${
         isScrolled
           ? 'bg-white/95 dark:bg-gray-900/95 backdrop-blur-lg shadow-2xl'
           : 'bg-transparent'
-      }`}
+      }
+      `}
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">

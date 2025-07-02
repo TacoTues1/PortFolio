@@ -7,11 +7,9 @@ import {
   SiTypescript,
   SiNodedotjs,
   SiPython,
-  SiMongodb,
-  SiPostgresql,
+  SiNextdotjs,
   SiTailwindcss,
   SiGit,
-  SiDocker,
 } from 'react-icons/si';
 
 const Skills = () => {
@@ -35,15 +33,14 @@ const Skills = () => {
       items: [
         { name: 'Node.js', icon: SiNodedotjs },
         { name: 'Python', icon: SiPython },
-        { name: 'MongoDB', icon: SiMongodb },
-        { name: 'PostgreSQL', icon: SiPostgresql },
+        { name: 'Next.js', icon: SiNextdotjs },
       ],
     },
     {
       category: 'Tools & Others',
       items: [
         { name: 'Git', icon: SiGit },
-        { name: 'Docker', icon: SiDocker },
+
       ],
     },
   ];
