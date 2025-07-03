@@ -1,6 +1,58 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownTrayIcon } from '@heroicons/react/24/outline';
+
+const TypewriterText = ({ texts, speed = 100, delay = 2000 }) => {
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [displayText, setDisplayText] = useState('');
+
+  useEffect(() => {
+    const currentText = texts[currentTextIndex];
+    
+    if (!isDeleting) {
+      // Typing
+      if (currentCharIndex < currentText.length) {
+        const timeout = setTimeout(() => {
+          setDisplayText(currentText.slice(0, currentCharIndex + 1));
+          setCurrentCharIndex(currentCharIndex + 1);
+        }, speed);
+        return () => clearTimeout(timeout);
+      } else {
+        // Finished typing, wait then start deleting
+        const timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, delay);
+        return () => clearTimeout(timeout);
+      }
+    } else {
+      // Deleting
+      if (currentCharIndex > 0) {
+        const timeout = setTimeout(() => {
+          setDisplayText(currentText.slice(0, currentCharIndex - 1));
+          setCurrentCharIndex(currentCharIndex - 1);
+        }, speed / 2);
+        return () => clearTimeout(timeout);
+      } else {
+        // Finished deleting, move to next text
+        setIsDeleting(false);
+        setCurrentTextIndex((currentTextIndex + 1) % texts.length);
+      }
+    }
+  }, [currentTextIndex, currentCharIndex, isDeleting, texts, speed, delay]);
+
+  return (
+    <span className="text-blue-600 dark:text-blue-400">
+      {displayText}
+      <motion.span
+        animate={{ opacity: [1, 0] }}
+        transition={{ duration: 0.5, repeat: Infinity }}
+        className="inline-block w-1 h-12 bg-blue-600 dark:bg-blue-400 ml-2"
+      />
+    </span>
+  );
+};
 
 const Hero = () => {
   // const handleDownloadCV = () => {
@@ -24,7 +76,12 @@ const Hero = () => {
               transition={{ duration: 0.5 }}
             >
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-                Hi, I'm <span className="text-blue-600 dark:text-blue-400">Alfonz Perez</span>
+                Hi, I'm <br />
+                <TypewriterText 
+                  texts={["Alfonz Perez", "Full Stack Developer"]} 
+                  speed={150} 
+                  delay={2500} 
+                />
               </h1>
             </motion.div>
 
