@@ -146,9 +146,103 @@ const Hero = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 dark:bg-blue-400 rounded-full opacity-80"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-blue-400 dark:bg-blue-300 rounded-full opacity-60"></div>
+              {/* Orbiting decorative elements */}
+              <motion.div
+                animate={{
+                  rotate: 360,
+                }}
+                transition={{
+                  duration: 8,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="absolute inset-0"
+              >
+                <motion.div
+                  className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 dark:bg-blue-400 rounded-full opacity-80 shadow-lg"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.div>
+              
+              <motion.div
+                animate={{
+                  rotate: -360,
+                }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="absolute inset-0"
+              >
+                <motion.div
+                  className="absolute -bottom-4 -left-4 w-6 h-6 bg-blue-400 dark:bg-blue-300 rounded-full opacity-60 shadow-lg"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.div>
+              
+              {/* Additional orbiting elements */}
+              <motion.div
+                animate={{
+                  rotate: 360,
+                }}
+                transition={{
+                  duration: 15,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="absolute inset-0"
+              >
+                <motion.div
+                  className="absolute top-1/2 -right-8 w-4 h-4 bg-blue-300 dark:bg-blue-500 rounded-full opacity-70 shadow-md"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.div>
+              
+              <motion.div
+                animate={{
+                  rotate: -360,
+                }}
+                transition={{
+                  duration: 10,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+                className="absolute inset-0"
+              >
+                <motion.div
+                  className="absolute top-1/2 -left-6 w-3 h-3 bg-blue-200 dark:bg-blue-600 rounded-full opacity-80 shadow-md"
+                  animate={{
+                    scale: [1, 1.2, 1],
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+              </motion.div>
             </motion.div>
           </motion.div>
         </div>
@@ -158,6 +252,92 @@ const Hero = () => {
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-white dark:from-gray-900 dark:to-gray-800" />
         <div className="absolute top-0 left-0 w-full h-full bg-grid-pattern opacity-5" />
+        
+        {/* Orbiting background elements */}
+        <motion.div
+          className="absolute top-10 left-20 w-4 h-4 bg-blue-300 dark:bg-blue-600 rounded-full opacity-30"
+          animate={{
+            x: [0, 100, 0],
+            y: [0, -50, 0],
+            scale: [1, 1.5, 1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        <motion.div
+          className="absolute top-5 right-25 w-6 h-6 bg-blue-400 dark:bg-blue-500 rounded-full opacity-20"
+          animate={{
+            x: [0, -80, 0],
+            y: [0, 60, 0],
+            scale: [1, 1.3, 1],
+          }}
+          transition={{
+            duration: 12,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        <motion.div
+          className="absolute bottom-32 left-1/4 w-3 h-3 bg-blue-200 dark:bg-blue-700 rounded-full opacity-40"
+          animate={{
+            x: [0, 120, 0],
+            y: [0, -40, 0],
+            scale: [1, 1.8, 1],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        <motion.div
+          className="absolute bottom-20 right-1/3 w-5 h-5 bg-blue-300 dark:bg-blue-600 rounded-full opacity-25"
+          animate={{
+            x: [0, -60, 0],
+            y: [0, -80, 0],
+            scale: [1, 1.4, 1],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        <motion.div
+          className="absolute top-1/2 left-16 w-2 h-2 bg-blue-400 dark:bg-blue-500 rounded-full opacity-35"
+          animate={{
+            x: [0, 90, 0],
+            y: [0, 70, 0],
+            scale: [1, 2, 1],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
+        <motion.div
+          className="absolute top-1/3 right-16 w-4 h-4 bg-blue-200 dark:bg-blue-700 rounded-full opacity-30"
+          animate={{
+            x: [0, -70, 0],
+            y: [0, -30, 0],
+            scale: [1, 1.6, 1],
+          }}
+          transition={{
+            duration: 11,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+        
         <motion.div
           className="absolute inset-0"
           animate={{
