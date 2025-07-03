@@ -10,15 +10,14 @@ import Contact from './components/sections/Contact';
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
-  useEffect(() => {
-    // Check for user's preferred color scheme
-    if (
-      window.matchMedia &&
-      window.matchMedia('(prefers-color-scheme: dark)').matches
-    ) {
-      setDarkMode(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (
+  //     window.matchMedia &&
+  //     window.matchMedia('(prefers-color-scheme: dark)').matches
+  //   ) {
+  //     setDarkMode(true);
+  //   }
+  // }, []);
 
   useEffect(() => {
     // Update document class when dark mode changes
