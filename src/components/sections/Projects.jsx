@@ -12,6 +12,7 @@ const Projects = () => {
 
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showAllRepos, setShowAllRepos] = useState(false);
 
   useEffect(() => {
     const fetchRepos = async () => {
@@ -191,38 +192,54 @@ const Projects = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {repos.map((repo) => (
-                  <motion.a
+                {(showAllRepos ? repos : repos.slice(0, 6)).map((repo) => (
+                  <motion.div
                     key={repo.id}
-                    href={repo.html_url}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     variants={itemVariants}
                     whileHover={{ y: -5 }}
-                    className="block bg-white dark:bg-gray-800 rounded-lg p-6 shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white dark:bg-gray-800 rounded-lg p-3 shadow-md hover:shadow-lg transition-shadow flex flex-col justify-between min-h-0"
                   >
-                    <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                      {repo.name}
-                    </h4>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="text-base font-semibold text-gray-900 dark:text-white">
+                        {repo.name}
+                      </h4>
+                      <a
+                        href={repo.html_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-2 py-1 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors text-xs"
+                      >
+                        <FaGithub className="w-4 h-4 mr-1" />
+                        View
+                      </a>
+                    </div>
+                    <p className="text-gray-600 dark:text-gray-400 text-xs mb-2 line-clamp-2">
                       {repo.description || 'No description available'}
                     </p>
-                    <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
-                      <div className="flex items-center space-x-4">
-                        <span className="flex items-center">
-                          <FaGithub className="w-4 h-4 mr-1" />
-                          {repo.language || 'Not specified'}
-                        </span>
-                        <span className="flex items-center">
-                          ⭐ {repo.stargazers_count}
-                        </span>
-                      </div>
-                      <span className="text-xs">
-                        Updated {new Date(repo.updated_at).toLocaleDateString()}
+                    <div className="flex items-center space-x-2 text-xs text-gray-500 dark:text-gray-400 mb-1">
+                      <span className="flex items-center">
+                        {repo.language || 'Not specified'}
+                      </span>
+                      <span className="flex items-center">
+                        ⭐ {repo.stargazers_count}
                       </span>
                     </div>
-                  </motion.a>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 mt-0">
+                      Updated {new Date(repo.updated_at).toLocaleDateString()}
+                    </span>
+                  </motion.div>
                 ))}
+              </div>
+            )}
+            {repos.length > 6 && (
+              <div className="flex justify-center mt-4">
+                <button
+                  className="text-blue-600 dark:text-blue-400 bg-transparent border-none px-4 py-2 text-sm font-medium cursor-pointer hover:underline focus:outline-none"
+                  type="button"
+                  onClick={() => setShowAllRepos((prev) => !prev)}
+                >
+                  {showAllRepos ? 'See Less' : 'See More'}
+                </button>
               </div>
             )}
           </motion.div>

@@ -19,7 +19,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
     { name: 'Home', to: 'hero' },
     { name: 'About', to: 'about' },
     { name: 'Skills', to: 'skills' },
-    // { name: 'Projects', to: 'projects' },
+    { name: 'Projects', to: 'projects' },
     // { name: 'Blog', to: 'blog' },
     { name: 'Contact', to: 'contact' },
   ];
