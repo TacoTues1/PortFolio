@@ -2,18 +2,21 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
+import WelcomeIntro from './components/intro/WelcomeIntro';
 
 function App() {
   const [introDone, setIntroDone] = useState(false);
+  const [welcomeFinished, setWelcomeFinished] = useState(false);
 
   return (
-    <div className="h-screen app-shell text-slate-100 overflow-hidden">
+    <div className="h-screen app-shell text-white overflow-hidden">
       <div className="ambient-bg" aria-hidden="true" />
+      {!welcomeFinished && <WelcomeIntro onFinish={() => setWelcomeFinished(true)} />}
       <Navbar showBrand={introDone} />
       <motion.main
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        initial={{ y: 24 }}
+        animate={{ y: welcomeFinished ? 0 : 24 }}
+        transition={{ duration: 0.45, ease: 'easeOut' }}
         className="h-full"
       >
         <Hero onTypeSequenceDone={() => setIntroDone(true)} />

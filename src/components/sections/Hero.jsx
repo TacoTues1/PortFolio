@@ -35,7 +35,6 @@ const projectItems = [
 
 const contactItems = [
   { name: 'Email', href: 'mailto:alfonzperez92@gmail.com', value: 'alfonzperez92@gmail.com' },
-  { name: 'LinkedIn', href: 'https://linkedin.com/in/yourusername', value: 'linkedin.com/in/yourusername' },
   { name: 'GitHub', href: 'https://github.com/TacoTues1', value: 'github.com/TacoTues1' },
   { name: 'Facebook', href: 'https://www.facebook.com/pahingakamunaaaa', value: 'facebook.com/pahingakamunaaaa' },
 ];
@@ -105,11 +104,11 @@ const Hero = ({ onTypeSequenceDone = () => {} }) => {
   const otherProjects = projectItems.slice(1);
 
   const actionButtons = (
-    <div className="flex flex-col gap-3">
+    <div className="mx-auto flex w-full max-w-[280px] flex-col gap-3">
       <button
         type="button"
         onClick={() => setActivePanel('projects')}
-        className="group inline-flex items-center justify-between gap-3 rounded-lg border border-[#2e7f88]/35 bg-transparent px-4 py-3 text-[#47c4cb] hover:border-[#48d6de]/55 transition-colors"
+        className="group inline-flex w-full items-center justify-between gap-3 rounded-lg border border-[#2e7f88]/35 bg-transparent px-4 py-3 text-[#47c4cb] hover:border-[#48d6de]/55 transition-colors"
       >
         <span className="text-base font-semibold">My Project</span>
         <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -118,7 +117,7 @@ const Hero = ({ onTypeSequenceDone = () => {} }) => {
       <button
         type="button"
         onClick={() => setActivePanel('contact')}
-        className="group inline-flex items-center justify-between gap-3 rounded-lg border border-white/20 bg-transparent px-4 py-3 text-slate-200 hover:border-[#48d6de]/45 hover:text-[#5dd8df] transition-colors"
+        className="group inline-flex w-full items-center justify-between gap-3 rounded-lg border border-white/20 bg-transparent px-4 py-3 text-slate-200 hover:border-[#48d6de]/45 hover:text-[#5dd8df] transition-colors"
       >
         <span className="text-base font-semibold">Contact Me</span>
         <ArrowRightIcon className="h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -132,8 +131,8 @@ const Hero = ({ onTypeSequenceDone = () => {} }) => {
         <div className="max-w-[1320px] mx-auto px-5 sm:px-8 w-full pt-28 sm:pt-32 pb-16">
           <div className="relative min-h-[68vh] grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-10 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ y: 16 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.45, delay: 0.2, ease: 'easeOut' }}
               className="w-full max-w-[760px] justify-self-start self-center"
             >
@@ -182,7 +181,7 @@ const Hero = ({ onTypeSequenceDone = () => {} }) => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 24 }}
                   transition={{ duration: 0.5, ease: 'easeOut' }}
-                  className="hidden lg:block w-full max-w-[300px] justify-self-end self-center"
+                  className="hidden lg:flex w-full max-w-[300px] items-center justify-center justify-self-center self-center"
                 >
                   {actionButtons}
                 </motion.aside>

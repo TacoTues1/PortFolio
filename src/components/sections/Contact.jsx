@@ -5,7 +5,6 @@ import emailjs from 'emailjs-com';
 
 const socialLinks = [
   { name: 'GitHub', icon: FaGithub, url: 'https://github.com/TacoTues1' },
-  { name: 'LinkedIn', icon: FaLinkedin, url: 'https://linkedin.com/in/yourusername' },
   { name: 'Email', icon: FaEnvelope, url: 'mailto:alfnzperez@gmail.com' },
 ];
 

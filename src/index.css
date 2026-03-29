@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 @layer base {
   :root {
@@ -88,6 +88,53 @@
     margin-left: 4px;
     color: rgba(226, 232, 240, 0.95);
     animation: blink-caret 0.9s step-end infinite;
+  }
+
+  .welcome-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    background: transparent;
+  }
+
+  .welcome-sheet {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 132vh;
+    z-index: 1;
+    background: #000;
+    border-bottom-left-radius: 52% 18vh;
+    border-bottom-right-radius: 52% 18vh;
+    will-change: transform;
+  }
+
+  .welcome-word-wrap {
+    position: relative;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .welcome-word {
+    display: inline-block;
+    font-family: 'Space Grotesk', 'Poppins', 'Segoe UI', sans-serif;
+    font-size: clamp(2.3rem, 8.8vw, 6.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: #fff;
+    text-shadow: 0 10px 44px rgba(0, 0, 0, 0.44);
+  }
+
+  @media (max-width: 640px) {
+    .welcome-sheet {
+      height: 124vh;
+      border-bottom-left-radius: 56% 12vh;
+      border-bottom-right-radius: 56% 12vh;
+    }
   }
 }
 
