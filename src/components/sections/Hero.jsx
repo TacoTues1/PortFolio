@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaEnvelope, FaInstagram, FaFacebookF } from 'react-icons/fa';
 import { ArrowRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
@@ -6,8 +6,7 @@ import { ArrowRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
 const introText =
   "I'm a full stack developer based in the Philippines who also likes dabbling with design. I graduated from Negros Oriental State University with a Bachelor of Science in Information Technology (BSIT). Feel free to reach out to me!";
 
-const FIRST_TEXT = 'Hey There!';
-const SECOND_TEXT = 'Alfonz Here!';
+const HERO_TITLE_TEXT = 'Alfonz Here!';
 
 const projectItems = [
   {
@@ -46,46 +45,33 @@ const socialLinks = [
   { label: 'Gmail', href: 'mailto:alfonzperez92@gmail.com', icon: FaEnvelope },
 ];
 
-const Hero = ({ onTypeSequenceDone = () => {} }) => {
+const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
   const [activePanel, setActivePanel] = useState(null);
-  const [phase, setPhase] = useState('typingFirst');
-  const [charIndex, setCharIndex] = useState(0);
-  const [typedText, setTypedText] = useState('');
+  const [phase, setPhase] = useState(startTyping ? 'typingName' : 'idle');
+  const [charIndex, setCharIndex] = useState(startTyping ? 1 : 0);
+  const [typedText, setTypedText] = useState(startTyping ? HERO_TITLE_TEXT.slice(0, 1) : '');
+
+  useLayoutEffect(() => {
+    if (startTyping && phase === 'idle') {
+      setTypedText(HERO_TITLE_TEXT.slice(0, 1));
+      setCharIndex(1);
+      setPhase('typingName');
+    }
+  }, [startTyping, phase]);
 
   useEffect(() => {
     let timeout;
 
-    if (phase === 'typingFirst') {
-      if (charIndex < FIRST_TEXT.length) {
+    if (phase === 'typingName') {
+      if (charIndex < HERO_TITLE_TEXT.length) {
         timeout = setTimeout(() => {
-          setTypedText(FIRST_TEXT.slice(0, charIndex + 1));
+          setTypedText(HERO_TITLE_TEXT.slice(0, charIndex + 1));
           setCharIndex((prev) => prev + 1);
-        }, 130);
-      } else {
-        timeout = setTimeout(() => {
-          setPhase('switching');
-        }, 650);
-      }
-    }
-
-    if (phase === 'switching') {
-      timeout = setTimeout(() => {
-        setTypedText('');
-        setCharIndex(0);
-        setPhase('typingSecond');
-      }, 260);
-    }
-
-    if (phase === 'typingSecond') {
-      if (charIndex < SECOND_TEXT.length) {
-        timeout = setTimeout(() => {
-          setTypedText(SECOND_TEXT.slice(0, charIndex + 1));
-          setCharIndex((prev) => prev + 1);
-        }, 130);
+        }, 80);
       } else {
         timeout = setTimeout(() => {
           setPhase('done');
-          setTypedText(SECOND_TEXT);
+          setTypedText(HERO_TITLE_TEXT);
         }, 220);
       }
     }
@@ -138,7 +124,7 @@ const Hero = ({ onTypeSequenceDone = () => {} }) => {
             >
               <h1 className="text-[52px] sm:text-[76px] lg:text-[64px] xl:text-[72px] font-semibold text-slate-100 leading-[1.02] mb-0 min-h-[1.2em]">
                 {typedText}
-                {phase !== 'done' ? <span className="typing-cursor">|</span> : null}
+                {phase !== 'done' && phase !== 'idle' ? <span className="typing-cursor">|</span> : null}
               </h1>
 
               <div className="mt-6 h-[220px] sm:h-[250px] md:h-[280px]">

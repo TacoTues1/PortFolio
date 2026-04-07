@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 const greetings = [
   'Hola',
@@ -21,18 +21,18 @@ const greetings = [
   'Hello',
 ];
 
-const NEXT_WORD_DELAY_MS = 170;
-const LAST_WORD_HOLD_MS = 900;
+const NEXT_WORD_DELAY_MS = 130;
+const LAST_WORD_HOLD_MS = 1000;
 
 const sheetVariants = {
   idle: { y: '0%' },
   exit: { y: '-120%' },
 };
 
-const wordVariants = {
-  initial: { y: 12 },
-  animate: { y: 0 },
-  exit: { y: -12 },
+const SHEET_EXIT_TRANSITION = {
+  type: 'tween',
+  duration: 0.46,
+  ease: [0.22, 1, 0.36, 1],
 };
 
 function WelcomeIntro({ onFinish }) {
@@ -67,7 +67,7 @@ function WelcomeIntro({ onFinish }) {
         variants={sheetVariants}
         initial="idle"
         animate={isExiting ? 'exit' : 'idle'}
-        transition={{ type: 'spring', stiffness: 96, damping: 22, mass: 1.02 }}
+        transition={SHEET_EXIT_TRANSITION}
         onAnimationComplete={() => {
           if (isExiting) {
             onFinish();
@@ -75,21 +75,11 @@ function WelcomeIntro({ onFinish }) {
         }}
       />
 
-      <AnimatePresence mode="wait">
-        {!isExiting && (
-          <motion.div
-            className="welcome-word-wrap"
-            key={activeWord}
-            variants={wordVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            transition={{ duration: 0.14, ease: [0.24, 0.84, 0.2, 1] }}
-          >
-            <span className="welcome-word">{activeWord}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {!isExiting && (
+      <div className="welcome-word-wrap text-xs sm:text-sm md:text-base lg:text-lg">
+          <span className="welcome-word">• {activeWord}</span>
+      </div>
+      )}
     </div>
   );
 }

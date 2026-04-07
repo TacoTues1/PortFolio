@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
 import WelcomeIntro from './components/intro/WelcomeIntro';
@@ -13,14 +12,9 @@ function App() {
       <div className="ambient-bg" aria-hidden="true" />
       {!welcomeFinished && <WelcomeIntro onFinish={() => setWelcomeFinished(true)} />}
       <Navbar showBrand={introDone} />
-      <motion.main
-        initial={{ y: 24 }}
-        animate={{ y: welcomeFinished ? 0 : 24 }}
-        transition={{ duration: 0.45, ease: 'easeOut' }}
-        className="h-full"
-      >
-        <Hero onTypeSequenceDone={() => setIntroDone(true)} />
-      </motion.main>
+      <main className="h-full">
+        <Hero startTyping={welcomeFinished} onTypeSequenceDone={() => setIntroDone(true)} />
+      </main>
     </div>
   );
 }
