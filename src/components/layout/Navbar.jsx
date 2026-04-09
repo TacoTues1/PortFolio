@@ -27,7 +27,7 @@ const Navbar = ({ showBrand = true }) => {
               </a>
 
               <a href="#hero" className="text-xl text-slate-100 font-medium tracking-tight">
-                alfonz.me
+                alfonz.dev
               </a>
             </motion.div>
           ) : null}
