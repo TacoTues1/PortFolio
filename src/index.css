@@ -26,7 +26,11 @@
   body.theme-rose,
   body.theme-watermelon,
   body.theme-midnight,
-  body.theme-cybor {
+  body.theme-cybor,
+  body.theme-aurora,
+  body.theme-ember,
+  body.theme-mono,
+  body.theme-lime {
     color-scheme: dark;
   }
 
@@ -148,6 +152,58 @@
     --theme-saturation: 1.35;
     --theme-brightness: 1;
     --theme-contrast: 1.08;
+    --media-invert: 0;
+    --media-hue: 0deg;
+    --media-saturation: 1;
+    --media-brightness: 1;
+    --media-contrast: 1;
+  }
+
+  body.theme-aurora .app-shell {
+    --theme-invert: 0;
+    --theme-hue: 188deg;
+    --theme-saturation: 1.22;
+    --theme-brightness: 1.06;
+    --theme-contrast: 1.04;
+    --media-invert: 0;
+    --media-hue: 0deg;
+    --media-saturation: 1;
+    --media-brightness: 1;
+    --media-contrast: 1;
+  }
+
+  body.theme-ember .app-shell {
+    --theme-invert: 0;
+    --theme-hue: 24deg;
+    --theme-saturation: 1.28;
+    --theme-brightness: 1.03;
+    --theme-contrast: 1.06;
+    --media-invert: 0;
+    --media-hue: 0deg;
+    --media-saturation: 1;
+    --media-brightness: 1;
+    --media-contrast: 1;
+  }
+
+  body.theme-mono .app-shell {
+    --theme-invert: 0;
+    --theme-hue: 0deg;
+    --theme-saturation: 0.28;
+    --theme-brightness: 1.02;
+    --theme-contrast: 1.15;
+    --media-invert: 0;
+    --media-hue: 0deg;
+    --media-saturation: 1;
+    --media-brightness: 1;
+    --media-contrast: 1;
+  }
+
+  body.theme-lime .app-shell {
+    --theme-invert: 0;
+    --theme-hue: 108deg;
+    --theme-saturation: 1.22;
+    --theme-brightness: 1.03;
+    --theme-contrast: 1.03;
     --media-invert: 0;
     --media-hue: 0deg;
     --media-saturation: 1;
@@ -306,6 +362,22 @@
 
   body.theme-cybor .theme-toggle-btn {
     border-color: rgba(117, 241, 247, 0.72);
+  }
+
+  body.theme-aurora .theme-toggle-btn {
+    border-color: rgba(96, 236, 244, 0.72);
+  }
+
+  body.theme-ember .theme-toggle-btn {
+    border-color: rgba(255, 168, 92, 0.72);
+  }
+
+  body.theme-mono .theme-toggle-btn {
+    border-color: rgba(214, 220, 230, 0.62);
+  }
+
+  body.theme-lime .theme-toggle-btn {
+    border-color: rgba(163, 233, 112, 0.72);
   }
 
   @media (max-width: 640px) {

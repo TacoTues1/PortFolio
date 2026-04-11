@@ -5,7 +5,7 @@ import Hero from './components/sections/Hero';
 import WelcomeIntro from './components/intro/WelcomeIntro';
 
 const THEME_STORAGE_KEY = 'portfolio-theme';
-const THEME_SEQUENCE = ['dark', 'light', 'rose', 'watermelon', 'midnight', 'cybor'];
+const THEME_SEQUENCE = ['dark', 'light', 'rose', 'watermelon', 'midnight', 'cybor', 'aurora', 'ember', 'mono', 'lime'];
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
