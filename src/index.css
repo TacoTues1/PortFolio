@@ -260,6 +260,17 @@
     transition: border-color 180ms ease, transform 180ms ease, background-color 180ms ease;
   }
 
+  .certificate-preview .react-pdf__Page {
+    margin: 0;
+  }
+
+  .certificate-preview .react-pdf__Page__canvas {
+    display: block;
+    max-width: 100%;
+    height: auto !important;
+    border-radius: 0.375rem;
+  }
+
   .theme-toggle-icon {
     width: 1.05rem;
     height: 1.05rem;

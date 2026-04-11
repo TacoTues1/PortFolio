@@ -1,9 +1,12 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Document, Page, pdfjs } from 'react-pdf';
 import { FaGithub, FaEnvelope, FaInstagram, FaFacebookF } from 'react-icons/fa';
 import { ArrowRightIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import networkAddressingCertificate from '../../cert/Network Addressing and Basic Troubleshooting.pdf';
 import networkAddressingUpdatedCertificate from '../../cert/NetworkAddressingandBasicTroubleshootingUpdate20260406-31-azfu5c.pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const introText =
   "I'm Alfonz Perez, a full stack developer based in the Philippines who also likes dabbling with design. I graduated from Negros Oriental State University with a Bachelor of Science in Information Technology (BSIT). Feel free to reach out to me!";
@@ -66,6 +69,7 @@ const socialLinks = [
 
 const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
   const [activePanel, setActivePanel] = useState(null);
+  const [hoveredCertificate, setHoveredCertificate] = useState(null);
   const [phase, setPhase] = useState(startTyping ? 'typingName' : 'idle');
   const [charIndex, setCharIndex] = useState(startTyping ? 1 : 0);
   const [typedText, setTypedText] = useState(startTyping ? HERO_TITLE_TEXT.slice(0, 1) : '');
@@ -103,6 +107,39 @@ const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
       onTypeSequenceDone();
     }
   }, [phase, onTypeSequenceDone]);
+
+  useEffect(() => {
+    if (activePanel !== 'certificate') {
+      setHoveredCertificate(null);
+    }
+  }, [activePanel]);
+
+  useEffect(() => {
+    if (activePanel) {
+      const appShell = document.querySelector('.app-shell');
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      if (appShell instanceof HTMLElement) {
+        appShell.style.overflow = 'hidden';
+      }
+    } else {
+      const appShell = document.querySelector('.app-shell');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      if (appShell instanceof HTMLElement) {
+        appShell.style.overflow = '';
+      }
+    }
+
+    return () => {
+      const appShell = document.querySelector('.app-shell');
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+      if (appShell instanceof HTMLElement) {
+        appShell.style.overflow = '';
+      }
+    };
+  }, [activePanel]);
 
   const showDetails = phase === 'done';
   const featuredProjects = projectItems.slice(0, 2);
@@ -338,16 +375,59 @@ const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
 
                       <div className="mt-8 space-y-4">
                         {certificateItems.map((item) => (
-                          <a
+                          <motion.div
+                            layout
+                            transition={{ layout: { type: 'spring', stiffness: 420, damping: 34, mass: 0.45 } }}
                             key={item.name}
-                            href={item.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="block rounded-lg border border-white/10 px-4 py-3 hover:border-[#48d6de]/45 transition-colors"
+                            onMouseEnter={() => setHoveredCertificate(item.name)}
+                            onMouseLeave={() => setHoveredCertificate(null)}
                           >
-                            <p className="text-sm text-slate-400">{item.name}</p>
-                            <p className="text-slate-100 mt-1">{item.value}</p>
-                          </a>
+                            <a
+                              href={item.href}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onFocus={() => setHoveredCertificate(item.name)}
+                              onBlur={() => setHoveredCertificate(null)}
+                              className="block rounded-lg border border-white/10 px-4 py-3 hover:border-[#48d6de]/45 transition-colors"
+                            >
+                              <p className="text-sm text-slate-400">{item.name}</p>
+                              <p className="text-slate-100 mt-1">{item.value}</p>
+                            </a>
+
+                            <AnimatePresence initial={false}>
+                              {hoveredCertificate === item.name ? (
+                                <motion.div
+                                  key={`${item.name}-preview`}
+                                  initial={{ height: 0, opacity: 0, marginTop: 0, scaleY: 0.96 }}
+                                  animate={{ height: 'auto', opacity: 1, marginTop: 8, scaleY: 1 }}
+                                  exit={{ height: 0, opacity: 0, marginTop: 0, scaleY: 0.96 }}
+                                  transition={{
+                                    height: { type: 'spring', stiffness: 360, damping: 32, mass: 0.42 },
+                                    opacity: { duration: 0.16, ease: 'easeOut' },
+                                    scaleY: { duration: 0.2, ease: 'easeOut' },
+                                  }}
+                                  className="overflow-hidden"
+                                  style={{ transformOrigin: 'top center' }}
+                                >
+                                  <div className="rounded-lg border border-white/10 bg-black/20 p-2 certificate-preview">
+                                    <Document
+                                      file={item.href}
+                                      loading={<p className="px-2 py-3 text-sm text-slate-300">Loading preview...</p>}
+                                      error={<p className="px-2 py-3 text-sm text-slate-300">Preview unavailable. Open the certificate PDF.</p>}
+                                      className="flex justify-center"
+                                    >
+                                      <Page
+                                        pageNumber={1}
+                                        height={176}
+                                        renderTextLayer={false}
+                                        renderAnnotationLayer={false}
+                                      />
+                                    </Document>
+                                  </div>
+                                </motion.div>
+                              ) : null}
+                            </AnimatePresence>
+                          </motion.div>
                         ))}
                       </div>
                     </>
