@@ -82,8 +82,7 @@ const Projects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ delay: index * 0.06, duration: 0.45 }}
-                whileHover={{ y: -4 }}
-                className="rounded-xl border border-white/10 bg-black/25 p-5 flex flex-col"
+                className="rounded-xl border border-[var(--border-card)] bg-[var(--bg-card)] p-5 flex flex-col transition-colors hover:border-[var(--border-card-hover)]"
               >
                 <h3 className="text-xl font-semibold text-slate-100">{project.title}</h3>
                 <p className="text-sm text-slate-300/85 leading-relaxed mt-3">{project.description}</p>

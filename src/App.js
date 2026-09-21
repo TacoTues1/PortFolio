@@ -5,15 +5,22 @@ import Hero from './components/sections/Hero';
 import WelcomeIntro from './components/intro/WelcomeIntro';
 
 const THEME_STORAGE_KEY = 'portfolio-theme';
-const THEME_SEQUENCE = ['dark', 'light', 'rose', 'watermelon', 'midnight', 'cybor', 'aurora', 'ember', 'mono', 'lime'];
+const THEME_SEQUENCE = ['khaki', 'sand', 'olive', 'midnight', 'mono'];
+
+const THEME_LABELS = {
+  khaki: 'Khaki Luxury',
+  sand: 'Desert Sand',
+  olive: 'Safari Olive',
+  midnight: 'Obsidian Earth',
+  mono: 'Studio Mono',
+};
 
 const getInitialTheme = () => {
   const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
-  if (savedTheme && THEME_SEQUENCE.includes(savedTheme)) {
+  if (savedTheme && THEME_SEQUENCE.includes(savedTheme) && savedTheme !== 'sand') {
     return savedTheme;
   }
-
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return 'khaki';
 };
 
 function App() {
@@ -22,7 +29,22 @@ function App() {
   const [welcomeFinished, setWelcomeFinished] = useState(false);
 
   useEffect(() => {
-    const themeClasses = THEME_SEQUENCE.map((theme) => `theme-${theme}`);
+    const allKnownThemes = [
+      'khaki',
+      'sand',
+      'olive',
+      'midnight',
+      'mono',
+      'dark',
+      'light',
+      'rose',
+      'watermelon',
+      'cybor',
+      'aurora',
+      'ember',
+      'lime',
+    ];
+    const themeClasses = allKnownThemes.map((theme) => `theme-${theme}`);
     document.body.classList.remove(...themeClasses);
     document.body.classList.add(`theme-${activeTheme}`);
     localStorage.setItem(THEME_STORAGE_KEY, activeTheme);
@@ -49,7 +71,7 @@ function App() {
 
   return (
     <>
-      <div className="app-shell text-white min-h-screen">
+      <div className="app-shell min-h-screen">
         <div className="ambient-bg" aria-hidden="true" />
         {!welcomeFinished && <WelcomeIntro onFinish={() => setWelcomeFinished(true)} />}
         <Navbar showBrand={introDone} />
@@ -62,12 +84,16 @@ function App() {
         <button
           type="button"
           onClick={rotateTheme}
-          className="theme-toggle-btn"
-          aria-label={`Change theme. Current theme: ${activeTheme}`}
-          title={`Theme: ${activeTheme}`}
+          className="theme-toggle-widget"
+          aria-label={`Change theme. Current theme: ${THEME_LABELS[activeTheme] || activeTheme}`}
+          title={`Switch theme: currently ${THEME_LABELS[activeTheme] || activeTheme}`}
         >
-          <SwatchIcon className="theme-toggle-icon" aria-hidden="true" />
-          <span className="sr-only">Change theme</span>
+          <div className="theme-toggle-icon-wrap" aria-hidden="true">
+            <SwatchIcon className="theme-toggle-icon" />
+          </div>
+          <span className="theme-toggle-text">
+            {THEME_LABELS[activeTheme] || activeTheme}
+          </span>
         </button>
       ) : null}
     </>

@@ -5,7 +5,9 @@ import {
   SiJavascript,
   SiTypescript,
   SiNodedotjs,
-  SiPython,
+  SiNextdotjs,
+  SiMongodb,
+  SiSass,
   SiTailwindcss,
   SiGit,
   SiPostgresql,
@@ -13,10 +15,12 @@ import {
 
 const skills = [
   { name: 'React', icon: SiReact },
+  { name: 'Next.js', icon: SiNextdotjs },
   { name: 'JavaScript', icon: SiJavascript },
   { name: 'TypeScript', icon: SiTypescript },
   { name: 'Node.js', icon: SiNodedotjs },
-  { name: 'Python', icon: SiPython },
+  { name: 'MongoDB', icon: SiMongodb },
+  { name: 'Sass', icon: SiSass },
   { name: 'Tailwind CSS', icon: SiTailwindcss },
   { name: 'PostgreSQL', icon: SiPostgresql },
   { name: 'Git', icon: SiGit },
@@ -36,7 +40,7 @@ const Skills = () => {
           <p className="section-label">Skills</p>
           <h2 className="section-title">Tech I use to ship fast.</h2>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mt-8">
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.name}
@@ -44,11 +48,10 @@ const Skills = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.35 }}
                 transition={{ delay: index * 0.04, duration: 0.4 }}
-                whileHover={{ y: -4 }}
-                className="rounded-xl border border-white/10 bg-white/5 px-4 py-5 flex flex-col items-center text-center"
+                className="rounded-xl border border-[var(--border-card)] bg-[var(--bg-card)] px-4 py-5 flex flex-col items-center text-center transition-colors hover:border-[var(--border-card-hover)]"
               >
-                <skill.icon className="h-9 w-9 text-cyan-300" />
-                <p className="mt-3 text-sm sm:text-base font-medium text-slate-100">{skill.name}</p>
+                <skill.icon className="h-8 w-8 text-[var(--khaki-accent-bright)]" />
+                <p className="mt-3 text-sm font-medium text-[var(--text-head)] font-mono">{skill.name}</p>
               </motion.div>
             ))}
           </div>

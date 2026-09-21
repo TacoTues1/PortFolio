@@ -76,9 +76,12 @@ function WelcomeIntro({ onFinish }) {
       />
 
       {!isExiting && (
-      <div className="welcome-word-wrap text-xs sm:text-sm md:text-base lg:text-lg">
-          <span className="welcome-word">• {activeWord}</span>
-      </div>
+        <div className="welcome-word-wrap">
+          <span className="welcome-word">
+            <span className="welcome-star" aria-hidden="true">✦</span>
+            <span className="welcome-text">{activeWord}</span>
+          </span>
+        </div>
       )}
     </div>
   );
