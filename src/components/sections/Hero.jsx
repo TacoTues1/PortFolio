@@ -52,20 +52,20 @@ const projectItems = [
   {
     name: 'Abalay Rent',
     category: 'Full Stack Platform',
-    status: 'In Progress',
+    status: 'Completed',
     href: 'https://abalay-rent.me',
     description:
-      'Current project in progress: a modern property rental platform offering intuitive search, seamless booking inquiries, and host listing management.',
+      'Completed property rental platform with intuitive search, seamless booking inquiries, and streamlined host listing management.',
     tags: ['React', 'Tailwind CSS', 'JavaScript', 'REST APIs'],
     featured: true,
   },
   {
     name: 'Abalay Mobile App',
     category: 'Mobile Application',
-    status: 'Google Play',
+    status: 'Completed',
     href: 'https://play.google.com/store/apps/details?id=com.abalay.mobile&hl=en',
     description:
-      'Official Android application published on Google Play for the Abalay platform, delivering responsive on-the-go rental management.',
+      'Completed Android application published on Google Play for the Abalay platform, delivering responsive on-the-go rental management.',
     tags: ['Android', 'Mobile App', 'Google Play', 'Cross-Platform'],
     featured: true,
   },
@@ -231,7 +231,7 @@ const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
         timeout = setTimeout(() => {
           setTypedText(HERO_TITLE_TEXT.slice(0, charIndex + 1));
           setCharIndex((prev) => prev + 1);
-        }, 85);
+        }, 105);
       } else {
         timeout = setTimeout(() => {
           setPhase('done');
@@ -344,69 +344,73 @@ const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
   const otherProjects = projectItems.filter((p) => !p.featured);
 
   const actionCards = (
-    <div className="mx-auto flex w-full max-w-[310px] flex-col gap-3">
-      <button
-        type="button"
-        onClick={() => setActivePanel('projects')}
-        className="group flex w-full items-center justify-between gap-4 rounded-xl border border-[var(--border-card)] bg-[var(--bg-card)] p-4 text-left transition-colors duration-150 hover:border-[var(--border-card-hover)] hover:bg-[var(--bg-card-solid)]"
-      >
-        <div className="flex flex-col">
-          <span className="text-base font-medium text-[var(--text-head)] group-hover:text-[var(--khaki-accent-bright)] transition-colors">
-            View my works
+    <div className="json-actions mx-auto flex w-full max-w-[380px] flex-col gap-3">
+      {[
+        {
+          panel: 'projects',
+          file: 'works.json',
+          title: 'View my works',
+          metaKey: 'projects',
+          metaValue: '5',
+          metaType: 'number',
+        },
+        {
+          panel: 'certificate',
+          file: 'certificates.json',
+          title: 'Certificates',
+          metaKey: 'credentials',
+          metaValue: '9',
+          metaType: 'number',
+        },
+        {
+          panel: 'contact',
+          file: 'contact.json',
+          title: 'Contact Me',
+          metaKey: 'status',
+          metaValue: 'open',
+          metaType: 'string',
+        },
+      ].map((item) => (
+        <button
+          key={item.panel}
+          type="button"
+          onClick={() => setActivePanel(item.panel)}
+          className="json-action-card group w-full text-left"
+        >
+          <span className="json-file-header">
+            <span className="safari-traffic-lights" aria-hidden="true">
+              <span className="safari-dot safari-dot-red" />
+              <span className="safari-dot safari-dot-yellow" />
+              <span className="safari-dot safari-dot-green" />
+            </span>
+            <span className="json-address-bar">
+              <span className="json-file-icon" aria-hidden="true">{'{}'}</span>
+              <span className="json-file-name">{item.file}</span>
+            </span>
+            <span className="json-toolbar-action" aria-hidden="true">
+              <ArrowRightIcon className="h-3.5 w-3.5 text-[var(--text-muted)] transition-all group-hover:translate-x-0.5 group-hover:text-[var(--khaki-accent-bright)]" />
+            </span>
           </span>
-          <span className="text-xs text-[var(--text-muted)] font-mono mt-0.5">
-            5 Selected Projects
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] uppercase font-mono tracking-wider rounded border border-[var(--border-card)] text-[var(--text-muted)]">
-            Works
-          </span>
-          <ArrowRightIcon className="h-4 w-4 text-[var(--text-muted)] group-hover:text-[var(--text-head)] transition-colors" />
-        </div>
-      </button>
 
-      <button
-        type="button"
-        onClick={() => setActivePanel('certificate')}
-        className="group flex w-full items-center justify-between gap-4 rounded-xl border border-[var(--border-card)] bg-[var(--bg-card)] p-4 text-left transition-colors duration-150 hover:border-[var(--border-card-hover)] hover:bg-[var(--bg-card-solid)]"
-      >
-        <div className="flex flex-col">
-          <span className="text-base font-medium text-[var(--text-head)] group-hover:text-[var(--khaki-accent-bright)] transition-colors">
-            Certificates
+          <span className="json-code" aria-label={`${item.title}, ${item.metaKey}: ${item.metaValue}`}>
+            <span className="json-code-line json-brace">{'{'}</span>
+            <span className="json-code-line json-code-indent">
+              <span className="json-key">"action"</span>
+              <span className="json-punctuation">: </span>
+              <span className="json-string">"{item.title}"</span>
+              <span className="json-punctuation">,</span>
+            </span>
+            <span className="json-code-line json-code-indent">
+              <span className="json-key">"{item.metaKey}"</span>
+              <span className="json-punctuation">: </span>
+              <span className={item.metaType === 'number' ? 'json-number' : 'json-string'}>
+                {item.metaType === 'string' ? `"${item.metaValue}"` : item.metaValue}
+              </span>
+            </span>
+            <span className="json-code-line json-brace">{'}'}</span>
           </span>
-          <span className="text-xs text-[var(--text-muted)] font-mono mt-0.5">
-            Cisco Networking Academy • 9 Credentials
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] uppercase font-mono tracking-wider rounded border border-[var(--border-card)] text-[var(--text-muted)]">
-            Verified
-          </span>
-          <ArrowRightIcon className="h-4 w-4 text-[var(--text-muted)] group-hover:text-[var(--text-head)] transition-colors" />
-        </div>
-      </button>
-
-      <button
-        type="button"
-        onClick={() => setActivePanel('contact')}
-        className="group flex w-full items-center justify-between gap-4 rounded-xl border border-[var(--border-card)] bg-[var(--bg-card)] p-4 text-left transition-colors duration-150 hover:border-[var(--border-card-hover)] hover:bg-[var(--bg-card-solid)]"
-      >
-        <div className="flex flex-col">
-          <span className="text-base font-medium text-[var(--text-head)] group-hover:text-[var(--khaki-accent-bright)] transition-colors">
-            Contact Me
-          </span>
-          <span className="text-xs text-[var(--text-muted)] font-mono mt-0.5">
-            Inquiries & Roles
-          </span>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="hidden sm:inline-block px-2 py-0.5 text-[10px] uppercase font-mono tracking-wider rounded border border-[#8fa97e]/40 text-[#6a8c56] dark:text-[#b9cead]">
-            Open
-          </span>
-          <ArrowRightIcon className="h-4 w-4 text-[var(--text-muted)] group-hover:text-[var(--text-head)] transition-colors" />
-        </div>
-      </button>
+        </button>
+      ))}
     </div>
   );
 
@@ -414,7 +418,7 @@ const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
     <>
       <section id="hero" className="relative min-h-[100dvh] flex items-start lg:items-center">
         <div className="max-w-[1320px] mx-auto px-5 sm:px-8 w-full pt-28 sm:pt-32 lg:pt-36 pb-12 sm:pb-16 lg:pb-20">
-          <div className="relative min-h-0 lg:min-h-[66vh] grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_330px] gap-8 lg:gap-12 items-start lg:items-center">
+          <div className="relative min-h-0 lg:min-h-[66vh] grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_400px] gap-8 lg:gap-12 items-start lg:items-center">
             <motion.div
               initial={{ y: 14 }}
               animate={{ y: 0 }}
@@ -423,7 +427,10 @@ const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
             >
 
               {/* Main Headline */}
-              <h1
+              <motion.h1
+                initial={false}
+                animate={{ opacity: startTyping ? 1 : 0, y: startTyping ? 0 : 8 }}
+                transition={{ duration: 0.52, ease: [0.22, 1, 0.36, 1] }}
                 className="text-[42px] sm:text-[60px] md:text-[68px] lg:text-[72px] font-semibold text-[var(--text-head)] leading-[1.02] mb-1 min-h-[1.15em] transition-colors"
                 style={{ fontFamily: "'Space Grotesk', sans-serif" }}
               >
@@ -431,13 +438,17 @@ const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
                 {phase !== 'done' && phase !== 'idle' ? (
                   <span className="typing-cursor">|</span>
                 ) : null}
-              </h1>
+              </motion.h1>
 
               {/* Dynamic Role Typewriter */}
               <div className="flex items-center gap-2 font-mono text-sm sm:text-lg text-[var(--khaki-accent-bright)] min-h-[1.8em] mb-4">
-                <span className="text-[var(--khaki-accent)] select-none">&gt;</span>
-                <span>{typedRole}</span>
-                <span className="typing-cursor">_</span>
+                {showDetails ? (
+                  <>
+                    <span className="text-[var(--khaki-accent)] select-none">&gt;</span>
+                    <span>{typedRole}</span>
+                    <span className="typing-cursor">_</span>
+                  </>
+                ) : null}
               </div>
 
               {/* Bio & Details Container */}
@@ -528,7 +539,7 @@ const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 24 }}
                   transition={{ duration: 0.5, ease: 'easeOut' }}
-                  className="hidden lg:flex w-full max-w-[310px] items-center justify-center justify-self-center self-center"
+                  className="hidden lg:flex w-full max-w-[390px] items-center justify-center justify-self-center self-center"
                 >
                   {actionCards}
                 </motion.aside>
@@ -543,7 +554,7 @@ const Hero = ({ startTyping = true, onTypeSequenceDone = () => {} }) => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 14 }}
                   transition={{ duration: 0.32 }}
-                  className="lg:hidden mt-6 w-full max-w-[320px]"
+                  className="lg:hidden mt-7 w-full max-w-[400px] mx-auto"
                 >
                   {actionCards}
                 </motion.div>

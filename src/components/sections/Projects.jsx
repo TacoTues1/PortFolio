@@ -7,10 +7,18 @@ const featuredProjects = [
   {
     title: 'Abalay Rent',
     description:
-      'Current project in progress: a rental platform experience for abalay-rent.me.',
+      'Completed property rental platform for abalay-rent.me with streamlined discovery, inquiries, and listing management.',
     technologies: ['React', 'Tailwind CSS', 'JavaScript'],
     github: '',
     live: 'https://abalay-rent.me',
+  },
+  {
+    title: 'Abalay Mobile App',
+    description:
+      'Completed Android application published on Google Play for responsive on-the-go rental management.',
+    technologies: ['Android', 'Mobile App', 'Google Play'],
+    github: '',
+    live: 'https://play.google.com/store/apps/details?id=com.abalay.mobile&hl=en',
   },
   {
     title: 'Time Master',

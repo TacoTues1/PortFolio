@@ -80,7 +80,7 @@ function App() {
         </main>
       </div>
 
-      {welcomeFinished ? (
+      {introDone ? (
         <button
           type="button"
           onClick={rotateTheme}
